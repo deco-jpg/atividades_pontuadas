@@ -4,25 +4,45 @@ os.system ("clear")
 #forma: A-álcool, G-gasolina), calcule e imprima o valor a ser pago pelo cliente sabendo-se que
 #O preço do litro da gasolina é R$ 6,59 e o preço do litro do álcool é R$ 3,79.
 
-litros = float (input("Escola a quantidade de litros: "))
+import os
+os.system ("cls")
+
+print (""""
+       
+ Álcool:                     |   Gasolina
+ Até 25L:                        Até 25L:                     
+ Desconto de 2% p/ Litro.        Desconto de 3% p/ Litro.
+
+ Acima de 25L:                   Acima de 25L:
+ Desconto de 4% p/ Litro.        Desconto de 5% p/ Litro.
+""")
 tipo_combustivel = input ("Escolha o tipo de combustivel (A- Alcool | (G- Gasolina: ") .strip() .upper()
-gasolina = 6.59
+litros = float (input("Escola a quantidade de litros: "))
 alcool = 3.79
+gasolina = 6.59
+litro_alcool = litros * 3.79
+litro_gasolina = litros * 6.59
 
 match tipo_combustivel:
     case "A":
-        preço_por_litro = alcool
-        desconto = 0.2 if litros <= 25 else 0.4
+        if litros <= 25:
+            calculo_desc = litro_alcool * 0.02
+            total_pagar = litro_alcool - calculo_desc
+            print (f"O valor a ser pago é: {total_pagar:.2f}")
+        else:
+            calculo_desc = litro_alcool * 0.04
+            total_pagar = litro_alcool - calculo_desc
+            print (f"O valor a ser pago é: {total_pagar:.2f} ")
     case "G":
-        preço_por_litro = gasolina
-        desconto = 0.3 if litros <= 25 else 0.5
+        if litros <= 25:
+            calculo_desc = litro_gasolina * 0.03
+            total_pagar = litro_alcool - calculo_desc
+            print (f"O valor a ser pago é: {total_pagar:.2f}")
+        else:
+            calculo_desc = litro_gasolina * 0.05
+            total_pagar = litro_alcool - calculo_desc
+            print (f"O valor a ser pago é: {total_pagar:.2f}")
     case _:
-        print ("Opção Inválida! ")
+        print ("Opção Inválida!")
 
-#Calculos
-
-valor_total = preço_por_litro * litros
-valor_desconto = valor_total * desconto
-valor_pago = valor_total - valor_desconto
-
-print (f"O valor a ser pago será: {valor_pago}")
+            
